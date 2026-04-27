@@ -126,7 +126,7 @@ CMD ["python", "app.py"]
 ---
 
 ### Simple Order to Remember
-**FROM → LABEL → ARG → ENV → WORKDIR → COPY/ADD → RUN → EXPOSE → VOLUME → USER → CMD/ENTRYPOINT**
+FROM → LABEL → ARG → ENV → WORKDIR → COPY/ADD → RUN → EXPOSE → VOLUME → USER → CMD/ENTRYPOINT
 ---
 ### Important Tips
 * Use `COPY` instead of `ADD` (best practice)
