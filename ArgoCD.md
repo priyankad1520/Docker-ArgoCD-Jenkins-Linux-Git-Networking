@@ -125,3 +125,14 @@ kubectl edit svc argocd-server -n argocd
 ```
 
 and change the type to NodePort from ClusterIP
+
+Example to understand easily
+•	Jenkins = Chef 👨‍🍳 (cooks food) 
+•	ArgoCD = Waiter 🍽️ (serves food) 
+•	Kubernetes = Restaurant 🏢 (runs everything smoothly) 
+👉 Restaurant doesn’t cook food 
+👉 It just manages operations 
+
+Kubernetes only:
+•	Runs and manages the deployed app
+•	“When using ArgoCD in a GitOps model, Jenkins is not required for Continuous Deployment because ArgoCD handles deployment automatically from Git. However, Jenkins is still commonly used for Continuous Integration tasks like building and testing applications.”
