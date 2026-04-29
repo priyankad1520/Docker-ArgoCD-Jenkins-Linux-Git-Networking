@@ -1,39 +1,26 @@
 # Basic Networking Concepts for DevOps Engineers
+#### 1. What is Networking?
 
-Networking is one of the most important skills for a DevOps Engineer because applications, servers, containers, Kubernetes clusters, CI/CD pipelines, monitoring tools, APIs, and cloud services all communicate through networks.
+Networking means connecting computers/devices so they can communicate and share data. / A network is a group of devices connected to communicate with each other.
 
----
-
-# 1. What is Networking?
-
-Networking means connecting computers/devices so they can communicate and share data.
-
-Example:
+Example: Internet, Office LAN, Wifi at home, Cloud Networking(AWS VPC)
 
 * Laptop communicates with server
 * Browser communicates with website
 * Kubernetes pods communicate with each other
 * Jenkins communicates with GitHub
-
 ---
+#### 2. IP Address = Unique address of a device in a network.
+Types: 1. IPv4 → `192.168.1.10` and 2. IPv6 → `2001:db8::1`
 
-# 2. IP Address
-
-IP Address = Unique address of a device in a network.
-
-Types:
-
-1. IPv4 → `192.168.1.10`
-2. IPv6 → `2001:db8::1`
-
-### Types of IP
+##### Types of IP
 
 | Type       | Example     | Usage                  |
 | ---------- | ----------- | ---------------------- |
 | Private IP | 192.168.x.x | Internal communication |
 | Public IP  | 8.8.8.8     | Internet communication |
 
-### Important Private IP Ranges
+#### Important Private IP Ranges
 
 | Range                         | Purpose         |
 | ----------------------------- | --------------- |
@@ -41,132 +28,119 @@ Types:
 | 172.16.0.0 – 172.31.255.255   | Medium networks |
 | 192.168.0.0 – 192.168.255.255 | Home/office     |
 
-### Commands
+#### Commands
 
 ```bash
 ip addr
 ifconfig
 hostname -I
 ```
+---
+#### 3. ISP: Internet service provider is a company that gives you access to the internet
 
+#### MAC Address = Physical hardware address of NIC card.
+```bash
+Example: 00:1A:2B:3C:4D:5E  # Used inside local network communication.
+```
+```bash
+Command: ip link
+```
 ---
 
-# 3. MAC Address
-
-MAC Address = Physical hardware address of NIC card.
-
-Example:
-
-```bash
-00:1A:2B:3C:4D:5E
-```
-
-Used inside local network communication.
-
-### Command
-
-```bash
-ip link
-```
-
----
-
-# 4. DNS (Domain Name System)
-
-DNS converts domain names into IP addresses.
-
-Example:
-
-```text
-google.com → 142.250.183.14
-```
-
-Without DNS:
-
-* We must remember IP addresses.
-
-### DNS Flow
-
-```text
-Browser → DNS Server → IP Address → Website Opens
-```
-
-### Commands
-
+#### 4. DNS (Domain Name System): DNS converts domain names into IP addresses.
+- Example: google.com → 142.250.183.14
+- Without DNS: We must remember IP addresses.
+- DNS Flow: Browser → DNS Server → IP Address → Website Opens
+##### Commands
 ```bash
 nslookup google.com
 dig google.com
 host google.com
 ```
-
 ---
-
-# 5. Port Numbers
-
-Ports identify specific services running on a system.
-
-Example:
-
+#### 5. Port Numbers: Ports identify specific application / services running on a system / Device.
 ```text
-IP = House Address
+Example: IP = House Address
 Port = Room Number
 ```
 
 ### Common Ports
+| Port Number | Protocol | Service Name Full Form                            | Usage                        |
+| ----------- | -------- | ------------------------------------------------- | ---------------------------- |
+| 20 and 21   | TCP      | FTP (File Transfer Protocol) Data and FTP Control | File transfer data and control       |
+| 22 and 23   | TCP      | **SSH (Secure Shell)** and Telnet                 | Remote server login and Remote login (not secure)        |
+| 25 and 465  | TCP      | **SMTP (Simple Mail Transfer Protocol) and SMTPS (Secure SMTP)**| Sending emails and Secure email sending              |
+| 53          | TCP/UDP  | **DNS (Domain Name System)**                      | Domain name resolution       |
+| 67 and 68   | UDP      | DHCP (Dynamic Host Configuration Protocol) Server and DHCP Client | Assign IP addresses and Receive IP address           |
+| 69          | UDP      | TFTP (Trivial File Transfer Protocol)             | Simple file transfer         |
+| 80          | TCP      | **HTTP (HyperText Transfer Protocol)**            | Website traffic              |
+| 443         | TCP      | **HTTPS (HyperText Transfer Protocol Secure)**    | Secure websites              |
+| 4433        | TCP      | Alternative HTTPS                                 | Secure communication         |
+| 2375 & 2376 | TCP      | **Docker Remote API (Non-SSL) and SSL**           | Docker communication &  Secure Docker communication        |
+| 2377        | TCP      | **Docker Swarm Manager**                          | Swarm cluster                |
+| 9090        | TCP      | **Prometheus**                                    | Monitoring                   |
+| 3000        | TCP      | **Grafana** / NodeJS Apps                         | Dashboards/apps              |
+| 5601        | TCP      | **Kibana**                                        | Log visualization            |
+| 8080        | TCP      | HTTP Alternate / **Jenkins** / Tomcat             | DevOps tools                 |
+| 50000       | TCP      | **Jenkins Agent Port**                            | Jenkins nodes                |
+| 9000        | TCP      | **SonarQube**                                     | Code quality                 |
+| 4954        |          | **Trivy Server Mode**                             | Docker image Vulnerability scanning server |
+| 8000        | TCP      | Python/Django Apps                                | Web applications             
+| 9092        | TCP      | Apache Kafka                                      | Messaging                    |
+| 6379        | TCP      | **Redis**                                         | Cache/database               |
+| 9200        | TCP      | **Elasticsearch REST API**                        | Search/log storage           |
+| 9300        | TCP      | Elasticsearch Transport                           | Cluster communication        |
+| 10250       | TCP      | Kubernetes Kubelet API                            | Node communication           |
+| 10255       | TCP      | Read-Only Kubelet API                             | Kubernetes monitoring        |
+| 6443        | TCP      | Kubernetes API Server                             | Kubernetes control plane     |
+| 3306        | TCP      | MySQL                                             | Database                     |
+| 5432        | TCP      | PostgreSQL                                        | Database                     |
+| 27017       | TCP      | MongoDB                                           | NoSQL database               |
+| 8081        | TCP      | Nexus Repository (Maven)                          | Artifact management          |
+| 9418        | TCP      | Git Native Protocol                               | Git repositories             |
+| 88          | TCP/UDP  | Kerberos                                          | Authentication               |
+| 110         | TCP      | POP3 (Post Office Protocol v3)                    | Receiving emails             |
+| 514         | UDP      | Syslog                                            | Log management               |
+| 5900        | TCP      | VNC (Virtual Network Computing)                   | Remote desktop               |
 
-| Port  | Service           |
-| ----- | ----------------- |
-| 20/21 | FTP               |
-| 22    | SSH               |
-| 23    | Telnet            |
-| 25    | SMTP              |
-| 53    | DNS               |
-| 80    | HTTP              |
-| 443   | HTTPS             |
-| 3306  | MySQL             |
-| 5432  | PostgreSQL        |
-| 6379  | Redis             |
-| 8080  | Tomcat/Jenkins    |
-| 6443  | Kubernetes API    |
-| 9090  | Prometheus        |
-| 3000  | Grafana/Node apps |
-
-### Commands
-
+##### Commands
 ```bash
 netstat -tulnp
 ss -tulnp
 lsof -i :80
+nc -zv localhost 22
+telnet localhost 443
 ```
+---
+#### 6. Protocols: Rules for communication.
+##### Important Protocols
+
+| Protocol | Full Form                          | Purpose                      |
+| -------- | ---------------------------------- | ---------------------------- |
+| HTTP     | HyperText Transfer Protocol        | Website communication        |
+| HTTPS    | HyperText Transfer Protocol Secure | Secure website communication |
+| TCP      | Transmission Control Protocol      | Reliable communication       |
+| UDP      | User Datagram Protocol             | Fast communication           |
+| SSH      | Secure Shell                       | Remote server login          |
+| FTP      | File Transfer Protocol             | File transfer                |
+| SMTP     | Simple Mail Transfer Protocol      | Sending emails               |
 
 ---
-
-# 6. Protocols
-
-Protocols = Rules for communication.
-
-### Important Protocols
-
-| Protocol | Purpose                |
-| -------- | ---------------------- |
-| HTTP     | Website communication  |
-| HTTPS    | Secure HTTP            |
-| TCP      | Reliable communication |
-| UDP      | Fast communication     |
-| SSH      | Remote login           |
-| FTP      | File transfer          |
-| SMTP     | Email sending          |
-
----
-
 # 7. TCP vs UDP
+| Feature            | TCP                           | UDP                    |
+| ------------------ | ----------------------------- | ---------------------- |
+| Full Form          | Transmission Control Protocol | User Datagram Protocol |
+| Communication Type | Connection-oriented           | Connectionless         |
+| Reliability        | Reliable                      | Not reliable           |
+| Speed              | Slower                        | Faster                 |
+| Error Checking     | Yes                           | Minimal                |
+| Data Order         | Maintains order               | No order guarantee     |
+| Packet Delivery    | Guaranteed                    | Not guaranteed         |
+| Acknowledgement    | Required                      | Not required           |
+| Best For           | Accuracy                      | Speed                  |
+| Used In            | Websites, databases           | Streaming, gaming      |
+| Example Protocols  | HTTP, HTTPS, SSH              | DNS, VoIP, Gaming      |
 
-| TCP                 | UDP                      |
-| ------------------- | ------------------------ |
-| Reliable            | Fast                     |
-| Connection-oriented | Connectionless           |
-| Error checking      | No guarantee             |
-| Used in HTTP/HTTPS  | Used in streaming/gaming |
 
 ---
 
@@ -176,23 +150,20 @@ Very important for interviews.
 
 | Layer          | Purpose            |
 | -------------- | ------------------ |
-| 7 Application  | HTTP, DNS          |
-| 6 Presentation | Encryption         |
-| 5 Session      | Session management |
-| 4 Transport    | TCP/UDP            |
-| 3 Network      | IP Routing         |
-| 2 Data Link    | MAC Address        |
-| 1 Physical     | Cable/Wire         |
-
-### Easy Shortcut
+| 7 Application  | HTTP, DNS. user interaction      |
+| 6 Presentation | Encryption. convert data into a secure / encryption formate so hacker can not reat it    |
+| 5 Session      | Manages sessions/connections between systems. Responsibilities: Start,Maintain and End sessions  |
+| 4 Transport    | TCP: Ensures message reaches correctly. Breaks data into pices/packets, error checking, reliable Delivery, Re-sending if needed /UDP |
+| 3 Network      | Finding/ decides the best path/Route. Use IP address and Routers work here         |
+| 2 Data Link    | Tranfers data within local Network using MAC Address  Wi-fi ethernet      |
+| 1 Physical     | Actual singal (real physical Transmission). Electrial signal,ratio waves, fiber and Cable/Wire         |
 
 ```text
-Please Do Not Throw Sausage Pizza Away
+Easy Shortcut: Please Do Not Throw Sausage Pizza Away
 ```
-
 ---
 
-# 9. TCP/IP Model
+#### 9. TCP/IP Model
 
 Real-world networking model.
 
@@ -202,42 +173,26 @@ Real-world networking model.
 | Transport      | TCP, UDP  |
 | Internet       | IP        |
 | Network Access | Ethernet  |
-
 ---
+#### 10. Subnetting: Subnetting divides large networks into smaller networks.
+Dividing one big network into smaller parts using IP range or Ip base network
 
-# 10. Subnetting
-
-Subnetting divides large networks into smaller networks.
-
-Example:
-
-```text
-192.168.1.0/24
-```
-
-### CIDR Meaning
-
+##### CIDR (Class less inter domain routing) / Compact subnet notation.
+- Example: 192.168.1.0/24
+- /24 means: The number after "/ " Shows how many bits are used for the network port.
+- First 24 bits for network remaining bits for Devices/ Hosts
+- /32 = 1ip (2^0) for host/device like
+- 31=2ip  remaing number is 1 so the value is (2^1) , 30=4ip same as (2^2) , 29=8ip (2^3), 28=16ip (2^4), 27=32ip (2^5), 26=64ip (2^6), 25=128ip
 | CIDR | Hosts         |
 | ---- | ------------- |
-| /24  | 256           |
+| /24  | 256  (2^7)    |
 | /16  | 65536         |
-| /8   | Large network |
-
-### Why Used
-
-* Better security
-* Better management
-* Reduce traffic
-
+| /8   | 1.6 cr Large network |
+- Why Used: Better security, Better management and Reduce traffic
 ---
+#### 11. Gateway: Gateway connects one network to another.
 
-# 11. Gateway
-
-Gateway connects one network to another.
-
-Example:
-
-* Local network → Internet
+Example: Local network → Internet
 
 ### Command
 
@@ -245,158 +200,105 @@ Example:
 ip route
 route -n
 ```
-
 ---
 
-# 12. Router
-
-Router forwards packets between networks.
-
-Example:
-
-```text
-Home Router connects:
-Laptop ↔ Internet
-```
+#### 12. Router: Router forwards packets between networks.
+Routing is use to finding/ choose the best or shortest path/ route to send data / data packets to travel from source to destination across networks.
+- To avoid network congestion: Use routing table repeately until to find the best path.
+- static routing is manually configured route.
+- dynamic routing is automatically using protocals/rules.
+- Example: Home Router connects: Laptop ↔ Internet
 
 ---
-
-# 13. Switch
-
-Switch connects devices inside same network.
-
-Works using MAC addresses.
-
+#### 13. Switch: Switch connects devices inside same network. Works using MAC addresses.
 ---
+#### 14. Firewall: It's a security graud for company network
+- A firewall is a security system that mointors and  controls incoming/outgoing network traffic.
+- It soes not allow unauthorized person to access the data, data theft, malware attacks  this are blocked by firewall.
 
-# 14. Firewall
+Types of firewall
+- network firewall: protect entire network
+- Host firewall: Install on individual system
+- Cloud firewall: AWS security Groups: Acts like firewall, controles inbound and outbound traffic/ calls
 
-Firewall controls incoming/outgoing traffic.
-
-### Linux Firewall
+Linux Firewall
 
 ```bash
 ufw
 iptables
 firewalld
+Example: Allow SSH: ufw allow 22
 ```
-
-### Example
-
-Allow SSH:
-
-```bash
-ufw allow 22
-```
-
 ---
-
-# 15. NAT (Network Address Translation)
-
-Converts private IP ↔ public IP.
-
-Example:
-
-```text
-Multiple systems use one public IP.
-```
-
-Used in:
-
-* Home routers
-* Cloud networking
-* Kubernetes
-
+#### 15. NAT (Network Address Translation): Converts private IP vice-versa public IP.
+- NAT allows private networks to access the internet using a public IP.
+- In AWS private network cant access the public internet directly so that use NAT gateway
+Type
+1. Static NAT: 1 private --> 1 public.
+2. Dynamic: uses pool of public IP.
+3. PAT (Port Address Transiation): Many private IP's 1--> 1 public IP using ports 
+- Example: Multiple systems use one public IP.
+- Used in: Home routers, Cloud networking, Kubernetes
 ---
-
-# 16. DHCP
-
-DHCP automatically assigns IP addresses.
-
-Without DHCP:
-
-* Need manual IP configuration.
-
-### Commands
-
+#### 16. DHCP: DHCP automatically assigns IP addresses.
+- Without DHCP: Need manual IP configuration.
+- Commands
 ```bash
 dhclient
 ```
-
 ---
+#### Cloud Network: Network inside the cloud like rent it. Play how much you use or how much you wnat.
 
-# 17. VPN (Virtual Private Network)
-
-Secure encrypted connection between user and company network.
-
-Used in:
-
-* Remote work
-* Secure access
-* Cloud connectivity
-
+#### 17. VPN (Virtual Private Network): Secure encrypted connection between user and company network.
+- VPC is your private, secure and separete network inside the cloud
+- Used in: Remote work, Secure access, Cloud connectivity
 ---
+#### 18. Load Balancer: Distributes traffic across multiple servers.
 
-# 18. Load Balancer
-
-Distributes traffic across multiple servers.
-
-### Types
+#### Types
 
 | Type    | Usage      |
 | ------- | ---------- |
 | Layer 4 | TCP/UDP    |
 | Layer 7 | HTTP/HTTPS |
 
-### Popular Load Balancers
+#### Popular Load Balancers
 
 * NGINX
 * HAProxy
 * AWS ELB
 * Traefik
-
 ---
-
-# 19. Reverse Proxy
-
-Client sends request to proxy → proxy forwards to backend.
-
-### Used For
-
-* SSL termination
-* Security
-* Load balancing
-* Routing
-
-### Examples
-
-* NGINX
-* Traefik
-
+#### 19. Reverse Proxy: Client sends request to proxy → proxy forwards to backend.
+- Used For: SSL termination, Security, Load balancing, Routing
+- Examples: NGINX, Traefik
 ---
+#### 20. SSL/TLS: SSL (Secure Sockets Layer): Secure communication over network. TLS (Transport Layer Security): Modern secure communication protocol
 
-# 20. SSL/TLS
+Why
+- Encrypt communication
+- Protect sensitive data
+- Secure websites
+- Prevent hacking/sniffingEncrypts communication.
 
-Encrypts communication.
+Used in:
+- HTTPS websites
+- APIs
+- Banking apps
+- Kubernetes ingress
+- DevOps tools
 
-Example:
+Example: HTTP  → Not Secure or HTTPS → Secure
 
-```text
-HTTP  → Not Secure
-HTTPS → Secure
-```
-
-### Certificate Files
+##### Certificate Files
 
 ```text
 .crt
 .key
 .pem
 ```
-
 ---
-
-# 21. HTTP Methods
+#### 21. HTTP Methods
 
 | Method | Purpose    |
 | ------ | ---------- |
@@ -407,111 +309,25 @@ HTTPS → Secure
 
 ---
 
-# 22. API
-
-API allows applications to communicate.
-
-Example:
-
-```text
-Frontend ↔ Backend ↔ Database
-```
-
-### API Types
-
-* REST API
-* SOAP API
-* GraphQL
-
+#### 22. API: API allows applications to communicate. `Example: Frontend ↔ Backend ↔ Database`
+- API Types: REST API, SOAP API, GraphQL
 ---
-
-# 23. Packet
-
-Packet = Small piece of data transferred over network.
-
+#### 23. Packet: Small piece of data transferred over network.
 ---
-
-# 24. Latency
-
-Latency = Delay in communication.
-
-### Check latency
-
-```bash
-ping google.com
-```
-
+#### 24. Latency: Delay in communication. `Check latency: ping google.com`
 ---
-
-# 25. Bandwidth
-
-Bandwidth = Amount of data transferable.
-
-Example:
-
-```text
-100 Mbps
-1 Gbps
-```
-
+#### 25. Bandwidth: Bandwidth = Amount of data transferable. `Example: 100 Mbps or 1 Gbps`
 ---
-
-# 26. Ping
-
-Checks connectivity.
-
-```bash
-ping google.com
-```
-
+#### 26. Ping: Checks connectivity. `ping google.com`
 ---
-
-# 27. Traceroute
-
-Shows path packets travel.
+#### 27. Traceroute: Shows path packets travel.
 
 ```bash
 traceroute google.com
 tracepath google.com
 ```
-
 ---
-
-# 28. SSH
-
-Remote server access.
-
-```bash
-ssh user@server-ip
-```
-
----
-
-# 29. CIDR
-
-CIDR = Compact subnet notation.
-
-Example:
-
-```text
-10.0.0.0/16
-```
-
----
-
-# 30. Network Interface Card (NIC)
-
-Hardware/network adapter used for communication.
-
-### Command
-
-```bash
-ip link
-```
-
----
-
-# Networking Concepts Important for DevOps Engineers
+#### 30. Network Interface Card (NIC): Hardware/network adapter used for communication. `Command: ip link`
 
 These are the most important concepts DevOps engineers use daily.
 
