@@ -126,7 +126,7 @@ telnet localhost 443
 | SMTP     | Simple Mail Transfer Protocol      | Sending emails               |
 
 ---
-# 7. TCP vs UDP
+#### 7. TCP vs UDP
 | Feature            | TCP                           | UDP                    |
 | ------------------ | ----------------------------- | ---------------------- |
 | Full Form          | Transmission Control Protocol | User Datagram Protocol |
@@ -144,7 +144,7 @@ telnet localhost 443
 
 ---
 
-# 8. OSI Model
+#### 8. OSI Model
 
 Very important for interviews.
 
