@@ -84,309 +84,78 @@ A branch is a separate line of development.
 
 # Types of Branches
 
-## 1. Main Branch (main/master)
-The primary branch of the project.
+### 1. Main Branch (main/master)
+The primary branch of the project. Live website code 
 - Contains: Stable code, Production-ready application, Final version of project
 - Example: `main`
 
-## 2. Feature Branch
+### 2. Feature Branch
 Used to develop new features.
+- Workflow: `main → create feature branch → develop → test → merge into main`
+- Example: `feature/login-page`
 
-## Workflow
+### 3. Release Branch
+Used when preparing a new release version. Preparing Version 2.0
+- Purpose: Final testing, Bug fixes, Documentation updates, Version preparation
+- Advantage: Development can continue on other branches while release preparation happens.
 
-```text
-main → create feature branch → develop → test → merge into main
-```
-
-## Example
-
-```bash
-feature/login-page
-```
-
----
-
-# Release Branch
-
-Used when preparing a new release version.
-
-## Purpose
-
-* Final testing
-* Bug fixes
-* Documentation updates
-* Version preparation
-
-## Advantage
-
-Development can continue on other branches while release preparation happens.
+### 4. Hotfix Branch
+Used to fix urgent production issues. Fix payment failure urgently
+- Workflow: `main → hotfix branch → fix issue → merge back → deploy immediately`
+- Characteristics: High priority, Quick fix, Minimal changes, Immediate deployment
 
 ---
 
-# Hotfix Branch
-
-Used to fix urgent production issues.
-
-## Workflow
-
-```text
-main → hotfix branch → fix issue → merge back → deploy immediately
-```
-
-## Characteristics
-
-* High priority
-* Quick fix
-* Minimal changes
-* Immediate deployment
-
----
-
-# Example of Branches in E-Commerce Application
-
-| Branch         | Purpose                      |
-| -------------- | ---------------------------- |
-| main           | Live website code            |
-| feature branch | New product filter feature   |
-| release branch | Preparing Version 2.0        |
-| hotfix branch  | Fix payment failure urgently |
-
----
-
-# 5. Commit
-
+### Commit
 A commit is a saved snapshot of your project at a specific time.
-
-It records:
-
-* File changes
-* Author information
-* Date and time
-* Commit message
-* Unique commit ID (hash)
-
----
-
-# Why Commit is Important
+- A commit is a snapshot of changes saved in the git repository along with a messange describing the changes. It helps track project history and allows reverting to previous version.
+- It records: Who made the File changes, Author information, Date and time, Commit message along with Unique commit ID (hash)
+- Commit Workflow: `Working Directory (Whre you edit the file) → Staging Area (Selected changes) → Commit → Repository
+**Why Commit is Important**
 
 * Tracks project history
 * Helps undo mistakes
 * Maintains version history
 * Allows collaboration
 
----
+- **Real-Life Example:** Commit is like taking a photo of your project. You can return to any old photo/version anytime.
+- Steps: Edit Files: `Modify project files` ---> Add to Staging Area: `git add filename `/ Add all files: `git add .`  ---> Commit Changes: `git commit -m "Added login feature` (`-m` means message) ---> View Commit History: `git log --oneline`
 
-# Real-Life Example
 
-Commit is like taking a photo of your project.
-
-You can return to any old photo/version anytime.
-
----
-
-# Commit Workflow
-
-```text
-Working Directory → Staging Area → Commit → Repository
-```
-
----
-
-# Steps to Create a Commit
-
-## Step 1: Edit Files
-
-Modify project files.
-
----
-
-## Step 2: Add to Staging Area
-
-```bash
-git add filename
-```
-
-Add all files:
-
-```bash
-git add .
-```
-
----
-
-## Step 3: Commit Changes
-
-```bash
-git commit -m "Added login feature"
-```
-
-### Here:
-
-* `-m` means message
-
----
-
-# View Commit History
-
-```bash
-git log --oneline
-```
-
----
-
-# 6. Staging Area
-
+### Staging Area
 The staging area is an intermediate area where selected changes are prepared before commit.
+- Temporary area where changes are prepared before commit.
+- Staging = Telling Git: > “Include this file in the next commit.”
+- Important Point: If you modify a file again after staging, the new changes are NOT included unless you stage again.
+- Staging Commands: Add One File: `git add filename`. Add All Files: `git add .`. Check Status: `git status`
+- Output Types: `Staged`: Ready for commit.  `Unstaged`: Not selected yet
+- Remove File from Staging: `git restore --staged filename`
 
-## Simple Meaning
-
-Staging = Telling Git:
-
-> “Include this file in the next commit.”
-
----
-
-# Important Point
-
-If you modify a file again after staging,
-the new changes are NOT included unless you stage again.
-
----
-
-# Staging Commands
-
-## Add One File
-
-```bash
-git add filename
-```
-
----
-
-## Add All Files
-
-```bash
-git add .
-```
-
----
-
-## Check Status
-
-```bash
-git status
-```
-
-### Output Types
-
-| Status   | Meaning          |
-| -------- | ---------------- |
-| Staged   | Ready for commit |
-| Unstaged | Not selected yet |
-
----
-
-## Remove File from Staging
-
-```bash
-git restore --staged filename
-```
-
----
-
-# 7. .git Folder
-
+# 7. .git Folder: .git = Hidden Git database
 The `.git` folder is the hidden brain/database of Git repository.
+- It stores: Commit history: `Stores all commits `, Branch details: `Branch references`, Configuration settings: `Repository settings`, Staging information/data, Repository metadata,  Objects : `Snapshots of files`
+- When is .git Created:  When you run: `git init`
+- Why It Starts with Dot (.): Files starting with `.` are hidden files in Linux/Unix systems.
+- See Hidden .git Folder: `ls -a`
 
-It stores:
 
-* Commit history
-* Branch details
-* Configuration settings
-* Staging information
-* Repository metadata
-
----
-
-# When is .git Created?
-
-When you run:
-
-```bash
-git init
-```
-
----
-
-# Why It Starts with Dot (.)
-
-Files starting with `.` are hidden files in Linux/Unix systems.
-
----
-
-# What .git Contains
-
-| Content        | Purpose             |
-| -------------- | ------------------- |
-| Commit History | Stores all commits  |
-| Branch Info    | Branch references   |
-| Config Files   | Repository settings |
-| Objects        | Snapshots of files  |
-| Staging Data   | Prepared changes    |
-
----
-
-# See Hidden .git Folder
-
-## Linux Command
-
-```bash
-ls -a
-```
-
----
-
-# 8. Fork
-
+### Fork
 Fork means creating your own copy of someone else's repository on GitHub.
 
-## Why Fork is Used
+**Why Fork is Used**
 
 * Contribute to open-source projects
 * Make changes independently
 * Experiment safely
 
----
-
-# 9. Clone
-
+### Clone
 Clone means downloading a repository from GitHub to your local system.
+- Command: `git clone <repository-url>`
+- Example: `git clone https://github.com/user/project.git`
 
-## Command
-
-```bash
-git clone <repository-url>
-```
-
-Example:
-
-```bash
-git clone https://github.com/user/project.git
-```
-
----
-
-# 10. Pull Request (PR)
-
+### Pull Request (PR)
 A Pull Request is a request to merge your code into another branch.
-
-## Workflow
-
-```text
-Create Branch → Make Changes → Push Code → Create PR → Review → Merge
-```
-
----
+- Workflow: `Create Branch → Make Changes → Push Code → Create PR → Review → Merge`
 
 # Why Pull Request is Important
 
@@ -397,24 +166,8 @@ Create Branch → Make Changes → Push Code → Create PR → Review → Merge
 
 ---
 
-# 11. Git Workflow in Real Project
-
-## Feature Development Workflow
-
-```text
-1. Clone Repository
-2. Create Feature Branch
-3. Make Changes
-4. git add .
-5. git commit -m "message"
-6. git push
-7. Create Pull Request
-8. Code Review
-9. Merge into Main
-10. CI/CD Pipeline Triggered
-```
-
----
+### Git Workflow in Real Project
+Workflow Example: `Clone Repository --> Developer creates feature branch --> Writes code --> git add . --> git commit -m "Added feature" --> git push --> Create Pull Request --> Code Review --> Merge to main --> CI/CD Pipeline Triggered --> Deployment` 
 
 # Common Git Commands
 
@@ -433,87 +186,6 @@ Create Branch → Make Changes → Push Code → Create PR → Review → Merge
 | git push     | Upload changes          |
 | git restore  | Restore changes         |
 
----
-
-# Important Interview Questions
-
-## What is Git?
-
-Git is a distributed version control system used to track code changes.
-
----
-
-## Difference Between Git and GitHub?
-
-Git is a version control tool.
-GitHub is a cloud platform for hosting Git repositories.
-
----
-
-## What is Commit?
-
-A commit is a saved snapshot of project changes.
-
----
-
-## What is Staging Area?
-
-Temporary area where changes are prepared before commit.
-
----
-
-## What is Branch?
-
-A separate line of development.
-
----
-
-## What is Pull Request?
-
-A request to merge code into another branch.
-
----
-
-# Simple Real-Time Workflow Example
-
-```text
-Developer creates feature branch
-        ↓
-Writes code
-        ↓
-git add .
-        ↓
-git commit -m "Added feature"
-        ↓
-git push
-        ↓
-Create Pull Request
-        ↓
-Code Review
-        ↓
-Merge to main
-        ↓
-CI/CD Pipeline Triggered
-        ↓
-Deployment
-```
-
----
-
-# Summary
-
-| Topic        | Meaning                   |
-| ------------ | ------------------------- |
-| Git          | Version control tool      |
-| GitHub       | Cloud platform for Git    |
-| Repository   | Project storage           |
-| Branch       | Separate development line |
-| Commit       | Saved snapshot            |
-| Staging      | Prepare files for commit  |
-| Pull Request | Request to merge code     |
-| Fork         | Copy repository           |
-| Clone        | Download repository       |
-| .git         | Hidden Git database       |
 
 # Basic Git Commands Guide
 
