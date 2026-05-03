@@ -41,6 +41,7 @@ When opening Chrome browser:
 Chrome Request --> Operating System --> CPU + RAM + Disk + Network
 OS allocates resources to Chrome.
 ```
+## concepts
 #### 1. Kernel: The Linux kernel is the core part of the operating system that manages hardware, memory, processes, and communication between software and hardware.
 #### 2. Linux File System: The Linux file system is the structure used to organize, store, and manage files and directories in Linux.
 #### 3. Shell: The shell is a command interpreter that takes user commands and sends them to the Linux kernel for execution.
