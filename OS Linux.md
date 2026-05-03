@@ -52,6 +52,8 @@ OS allocates resources to Chrome.
 #### 9. Package Management: Package management in Linux means installing, updating, removing, and managing software packages using tools like `apt`, `yum`, or `dnf`.
 #### 10. Linux Security: Linux security means protecting the Linux system, users, files, processes, and network from unauthorized access and attacks.
 #### 11. Cache: Cache is a temporary high-speed storage area used to store frequently accessed data so the system can access it faster later.
+#### 12. Host Operating System: The host operating system is the main operating system installed directly on the physical machine that manages hardware and runs applications, virtual machines, or containers.
+#### 13. System Resources: System resources are the hardware and software components used by the operating system and applications, such as CPU, memory (RAM), disk space, network, and processes.
 
 ## Kernel 
 Kernel is the core part of an Operating System, it acts as a bridge between hardware and software. It allows applications to communicate with hardware, without directly accessing the hardware components.
@@ -174,6 +176,22 @@ The `service` command is also used in some Linux distributions to manage service
 Logs related to services can be checked using the `journalctl` command.
 - Example `journalctl -u nginx` displays logs for the Nginx service.
 
+## Host Operating System
+Host Operating System is the main operating system installed directly on a physical computer or server, it manages hardware and system resources.
+
+The Host Operating System acts as the base system, other applications, virtual machines, and containers run on top of it. The host operating system communicates directly with hardware components, such as CPU, memory, storage, and network devices. Examples of Host Operating Systems are Linux, Windows, and macOS.
+
+In virtualization, the host operating system runs virtualization software, such as VMware, VirtualBox, or Hyper-V.
+
+The virtualization software creates and manages virtual machines on the host operating system. A virtual machine runs a Guest Operating System, while the actual physical system runs the Host Operating System. The host operating system allocates CPU, RAM, storage, and network resources to virtual machines.
+
+**In Docker, the host operating system provides the kernel required for running containers.** Containers share the host operating system kernel, they do not require separate full operating systems like virtual machines. Linux containers require a Linux kernel from the host operating system to run properly.
+
+The host operating system handles process management, memory management, networking, and device management for all running applications. The host operating system controls security policies, user access, and file permissions on the system. System services and background processes run on the host operating system. The host operating system manages software installation, package updates, and hardware drivers.
+
+In cloud computing, cloud servers also run a host operating system to manage virtual machines and containers. **If the host operating system crashes, all running applications, containers, and virtual machines may stop working.** The performance of applications and virtual machines depends on the stability and resource management of the host operating system.
+
+The host operating system is important because it provides the environment required for running software, virtual machines, and containers efficiently.
 ## Linux Users & Permissions
 Linux Users are accounts created in the Linux Operating System, they allow people or services to access the system securely. it controls who can access files and system resources. Each user in Linux has a unique username and User ID called UID.
 
